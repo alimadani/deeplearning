@@ -160,57 +160,25 @@ def testing(network_test, features_testing, labels_testing, batch_size):
 ####################################################
 # Initializing and optimizing the neural network
 ####################################################
-class Net(nn.Module):
-
-   def __init__(self, input_size, num_layers, layers_size, output_size):
-       '''
-       Function for building the network
-       :param input_size: number of input features
-       :param num_layers: number of the hidden layers
-       :param layers_size: sizes of the hidden layers
-       :param output_size: number of output predictions
-       '''
-       super(Net, self).__init__()
-
-       self.layers = [nn.Linear(input_size, layers_size[0])]
-       for i in range(1,num_layers):
-           self.layers.append(nn.Linear(layers_size[i-1], layers_size[i]))
-       self.layers.append(nn.Linear(layers_size[-1], output_size))
-   ###########################################
-   # Forward passing in the network
-   # implementation of activation
-   # functions in each layer
-   ###########################################
-   def forward(self, x):
-       for i in range(0, len(self.layers) - 1):
-           x = F.relu(self.layers[i](x))
-       x = self.layers[-1](x)
-       return F.log_softmax(x, dim = 1)
-
 def model_init(input_size, num_layers, layers_size, output_size, optimizer_params):
-   '''
-   Initializing the network and the optimizer
-   :param input_size: number of input features
-   :param num_layers: number of the hidden layers
-   :param layers_size: sizes of the hidden layers
-   :param output_size: number of output predictions
-   :param optimizer_params: Optimization algorithm's parameters
-   :return: initialized network and optimizer
-   '''
-   net = Net(input_size = input_size,
-             num_layers = num_layers,
-             layers_size = layers_size,
-             output_size = output_size)
+    '''
+    Initializing the network and the optimizer
+    :param input_size: number of input features
+    :param num_layers: number of the hidden layers
+    :param layers_size: sizes of the hidden layers
+    :param output_size: number of output predictions
+    :param optimizer_params: Optimization algorithm's parameters
+    :return: initialized network and optimizer
+    '''
+    net = Net(input_size = input_size,
+              num_layers = num_layers,
+              layers_size = layers_size,
+              output_size = output_size)
 
-   parameters = [par for model in net.layers for par in model.parameters()]
+    parameters = [par for model in net.layers for par in model.parameters()]
 
-   if optimizer_params['method'] == 'SGD':
-       optimizer_init = opt.SGD(parameters, lr=optimizer_params['learning_rate'], momentum = optimizer_params['momentum'])
-   elif optimizer_params['method'] == 'Addelta':
-       optimizer_init = opt.Adadelta(parameters, lr=optimizer_params['learning_rate'])
-   elif optimizer_params['method'] == 'Adam':
-       optimizer_init = opt.Adam(parameters, lr=optimizer_params['learning_rate'])
+    optimizer_init = opt.SGD(parameters, lr=optimizer_params['learning_rate'], momentum=optimizer_params['momentum'])
 
-   return net, optimizer_init
+    return net, optimizer_init
 
 
