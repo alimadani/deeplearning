@@ -1,0 +1,9 @@
+The UJIIndoorLoc is a Multi-Building Multi-Floor indoor localization database to test Indoor Positioning System that rely on WLAN/WiFi fingerprint.
+
+Relevant Papers:
+
+Joaquín Torres-Sospedra, Raúl Montoliu, Adolfo Martínez-Usó, Tomar J. Arnau, Joan P. Avariento, Mauri Benedito-Bordonau, Joaquín Huerta
+UJIIndoorLoc: A New Multi-building and Multi-floor Database for WLAN Fingerprint-based Indoor Localization Problems
+In Proceedings of the Fifth International Conference on Indoor Positioning and Indoor Navigation, 2014.
+
+Dataset link: https://archive.ics.uci.edu/ml/datasets/UJIIndoorLoc
