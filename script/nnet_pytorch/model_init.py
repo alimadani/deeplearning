@@ -2,7 +2,7 @@ import torch.optim as opt
 from script.nnet_pytorch.network import FCNN
 ####
 
-def model_init(input_size, layers_size, output_size, optimizer_params):
+def model_init(input_size, layers_size, layer_types, output_size, optimizer_params):
     '''
     Initializing the network and the optimizer
     :param input_size: number of input features
